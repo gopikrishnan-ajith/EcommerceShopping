@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - EcommerceShopping</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="admin-login-container">
+        <h2>Admin Login</h2>
+        <p>Enter your administrator credentials.</p>
+
+        <form id="adminLoginForm">
+            <label for="adminName">Admin Name</label>
+            <input
+                type="text"
+                id="adminName"
+                placeholder="Enter admin name"
+                required
+            >
+
+            <label for="adminPassword">Password</label>
+            <input
+                type="password"
+                id="adminPassword"
+                placeholder="Enter password"
+                required
+            >
+
+            <button type="submit">Login</button>
+            <p id="loginMessage"></p>
+        </form>
+    </div>
+    <div class="customer-link">
+        <p>Are you a customer?</p>
+        <a href="customer.html">Continue to Shopping</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="js/admin/auth.js"></script>
+    <script src="js/admin/admin-login.js"></script>
+</body>
+</html>

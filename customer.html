@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Online Shopping | Customer</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>Online Shopping</h1>
+        <p>Welcome to our Online Shopping Store</p>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+
+        <!-- Product Catalog -->
+        <section id="shoppingSection">
+
+            <h2>Browse Products</h2>
+
+            <!-- Search and Category Filter -->
+            <div class="catalog-controls">
+
+                <input
+                    type="search"
+                    id="shopSearch"
+                    placeholder="Search products by name or description..."
+                >
+
+                <select id="shopCategory">
+                    <option value="">All Categories</option>
+                </select>
+
+            </div>
+
+            <!-- Product Display -->
+            <div
+                id="shoppingProductList"
+                class="shopping-product-grid"
+            >
+                <p>Loading products...</p>
+            </div>
+
+            <!-- Catalog Messages -->
+            <p
+                id="catalogMessage"
+                style="display: none;"
+            ></p>
+
+            <!-- Pagination -->
+            <div class="pagination">
+
+                <button
+                    type="button"
+                    id="catalogPreviousBtn"
+                    disabled
+                >
+                    Previous
+                </button>
+
+                <span id="catalogPageInfo">
+                    Page 1
+                </span>
+
+                <button
+                    type="button"
+                    id="catalogNextBtn"
+                    disabled
+                >
+                    Next
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- Shopping Cart -->
+        <section id="cartSection">
+
+            <h2>Shopping Cart</h2>
+
+            <!-- Cart Items -->
+            <div id="shoppingCartItems">
+                <p>Your cart is empty.</p>
+            </div>
+
+            <!-- Cart Total -->
+            <div class="cart-summary">
+
+                <h3>
+                    Total:
+                    <span id="cartTotal">₹0.00</span>
+                </h3>
+
+            </div>
+
+            <!-- Cart Messages -->
+            <p
+                id="cartMessage"
+                style="display: none;"
+            ></p>
+
+            <!-- Checkout Button -->
+            <button
+                type="button"
+                id="proceedToCheckoutBtn"
+                disabled
+            >
+                Proceed to Checkout
+            </button>
+
+        </section>
+
+
+        <!-- Checkout Section -->
+        <section id="checkoutSection" style="display: none;">
+
+            <h2>Checkout</h2>
+
+            <form id="checkoutForm">
+
+                <label for="checkoutEmail">
+                    Registered Customer Email
+                </label>
+
+                <input
+                    type="email"
+                    id="checkoutEmail"
+                    placeholder="Enter your registered email"
+                    required
+                >
+
+                <label for="paymentMode">
+                    Payment Method
+                </label>
+
+                <select id="paymentMode" required>
+                    <option value="">Select Payment Method</option>
+                    <option value="Cash">Cash</option>
+                    <option value="Credit">Credit</option>
+                </select>
+
+                <p>
+                    Credit purchases are subject to your available credit limit.
+                </p>
+
+                <button type="submit" id="placeOrderBtn">
+                    Place Order
+                </button>
+
+                <button type="button" id="cancelCheckoutBtn">
+                    Cancel
+                </button>
+
+            </form>
+
+            <p id="checkoutMessage" style="display: none;"></p>
+
+        </section>
+
+
+        <section id="orderHistorySection" class="order-history-section">
+            <h2>My Orders</h2>
+            <p>Enter your registered email to view your previous orders.</p>
+
+            <div class="order-search">
+                <input
+                    type="email"
+                    id="orderCustomerEmail"
+                    placeholder="Enter registered email"
+                >
+                <button type="button" id="loadOrdersBtn">View Orders</button>
+            </div>
+
+            <p id="orderHistoryMessage"></p>
+
+            <div id="orderHistoryList"></div>
+
+            <div id="orderBillDetails"></div>
+        </section>
+
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Online Shopping. All rights reserved.</p>
+    </footer>
+
+
+    <!-- JavaScript Files -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+
+    <!-- Customer Modules -->
+    <script src="js/customer/cart.js"></script>
+    <script src="js/customer/catalog.js"></script>
+    <script src="js/customer/checkout.js"></script>
+    <script src="js/customer/orders.js"></script>
+
+</body>
+
+</html>

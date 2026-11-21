@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/admin/auth.js"></script>
+    <title>Admin Dashboard - Ecommerce Shopping</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Ecommerce Shopping</h1>
+        <p>Admin Dashboard</p>
+        <button type="button" onclick="adminLogout()">Logout</button>
+    </header>
+
+    <main>
+        <section>
+            <h2>Category Management</h2>
+
+            <form id="categoryForm">
+                <h3 id="categoryFormTitle">Add New Category</h3>
+
+                <label for="categoryName">Category Name</label>
+                <input
+                    type="text"
+                    id="categoryName"
+                    placeholder="Enter category name"
+                    maxlength="100"
+                    required
+                >
+
+                <button type="submit" id="saveCategoryBtn">
+                    Add Category
+                </button>
+
+                <button type="button" id="cancelEditBtn" style="display:none;">
+                    Cancel
+                </button>
+            </form>
+
+            <p id="categoryMessage" style="display:none;"></p>
+
+            <h3>Available Categories</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Category ID</th>
+                        <th>Category Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody id="categoryTableBody">
+                </tbody>
+            </table>
+        </section>
+
+        <section id="productManagement">
+            <h2>Product Management</h2>
+
+            <form id="productForm">
+                <h3 id="productFormTitle">Add New Product</h3>
+
+                <label for="productTitle">Product Title</label>
+                <input type="text" id="productTitle" maxlength="150" required>
+
+                <label for="productDescription">Description</label>
+                <textarea id="productDescription" required></textarea>
+
+                <label for="productCategory">Category</label>
+                <select id="productCategory" required>
+                    <option value="">Select Category</option>
+                </select>
+
+                <label for="productQuantity">Quantity</label>
+                <input type="number" id="productQuantity" min="0" step="1" required>
+
+                <label for="productPrice">Price</label>
+                <input type="number" id="productPrice" min="0" step="0.01" required>
+
+                <button type="submit" id="saveProductBtn">Add Product</button>
+
+                <button type="button" id="cancelProductEditBtn" style="display:none;">
+                    Cancel
+                </button>
+            </form>
+
+            <p id="productMessage" style="display:none;"></p>
+
+            <h3>Find Individual Product</h3>
+
+            <input
+                type="text"
+                id="productSearchId"
+                placeholder="Enter Product ID"
+            >
+
+            <button type="button" id="searchProductBtn">Search</button>
+            <button type="button" id="clearProductSearchBtn">Show All Products</button>
+
+            <h3>Product Inventory</h3>
+
+            <label for="productCategoryFilter">Filter by Category</label>
+            <select id="productCategoryFilter">
+                <option value="">All Categories</option>
+            </select>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product ID</th>
+                        <th>Title</th>
+                        <th>Category ID</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody id="productTableBody"></tbody>
+            </table>
+
+            <div class="pagination">
+                <button type="button" id="previousProductPageBtn" disabled>
+                    Previous
+                </button>
+
+                <span id="productPageInfo">Page 1</span>
+
+                <button type="button" id="nextProductPageBtn" disabled>
+                    Next
+                </button>
+            </div>
+        </section>
+
+        <section id="customerManagement">
+            <h2>Customer Management</h2>
+
+            <form id="customerForm">
+                <h3 id="customerFormTitle">Add New Customer</h3>
+
+                <label for="customerName">Customer Name</label>
+                <input
+                    type="text"
+                    id="customerName"
+                    maxlength="100"
+                    required
+                >
+
+                <label for="customerEmail">Email</label>
+                <input
+                    type="email"
+                    id="customerEmail"
+                    required
+                >
+
+                <label for="customerMobile">Mobile Number</label>
+                <input
+                    type="tel"
+                    id="customerMobile"
+                    maxlength="15"
+                    placeholder="Enter mobile number"
+                    required
+                >
+
+                <label for="customerCreditLimit">Credit Limit</label>
+                <input
+                    type="number"
+                    id="customerCreditLimit"
+                    min="0"
+                    step="0.01"
+                    value="0"
+                    required
+                >
+
+                <button type="submit" id="saveCustomerBtn">
+                    Add Customer
+                </button>
+
+                <button
+                    type="button"
+                    id="cancelCustomerEditBtn"
+                    style="display:none;"
+                >
+                    Cancel
+                </button>
+            </form>
+
+            <p id="customerMessage" style="display:none;"></p>
+
+            <h3>Customer Records</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Customer ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Mobile</th>
+                        <th>Credit Limit</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody id="customerTableBody"></tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Sample Data Setup</h2>
+            <p>Insert sample categories and products into Firestore.</p>
+
+            <button type="button" onclick="insertSampleData()">
+                Insert Sample Data
+            </button>
+
+            <button type="button" onclick="insertSampleCustomers()">
+                Insert Sample Customers
+            </button>
+
+            <button type="button" onclick="insertSampleOrders()">
+                Insert Sample Orders
+            </button>
+        </section>
+
+        <section id="inventoryReportsSection">
+            <h2>Inventory Reports</h2>
+
+            <div class="report-controls">
+                <label for="inventoryReportType">Report Type</label>
+
+                <select id="inventoryReportType">
+                    <option value="all">Current Stock - All</option>
+                    <option value="high">High Stock - Above 100</option>
+                    <option value="low">Low Stock - Below 15</option>
+                </select>
+
+                <label for="inventoryReportCategory">Category</label>
+
+                <select id="inventoryReportCategory">
+                    <option value="">All Categories</option>
+                </select>
+            </div>
+
+            <p id="inventoryReportMessage"></p>
+
+            <div id="inventoryReportTable"></div>
+        </section>
+
+        <section id="salesReportsSection">
+            <h2>Sales Reports</h2>
+
+            <div class="report-controls">
+                <label for="salesFromDate">From Date:</label>
+                <input type="date" id="salesFromDate">
+
+                <label for="salesToDate">To Date:</label>
+                <input type="date" id="salesToDate">
+            </div>
+
+            <div class="report-controls">
+                <label for="salesReportType">Report Type:</label>
+
+                <select id="salesReportType">
+                    <option value="all">All Sales</option>
+                    <option value="category">Category-wise Sales</option>
+                    <option value="cash">Cash Sales</option>
+                    <option value="credit">Credit Sales</option>
+                    <option value="top">Top 10 Selling Items</option>
+                    <option value="bottom">Bottom 10 Selling Items</option>
+                </select>
+
+                <label for="salesReportCategory">Category:</label>
+
+                <select id="salesReportCategory">
+                    <option value="">All Categories</option>
+                </select>
+            </div>
+
+            <p id="salesReportMessage"></p>
+
+            <div id="salesReportTable"></div>
+        </section>
+
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/admin/categories.js"></script>
+    <script src="js/admin/products.js"></script>
+    <script src="js/admin/customers.js"></script>
+    <script src="js/admin/reports.js"></script>
+    <script src="js/admin/seed-data.js"></script>
+
+</body>
+</html>
